@@ -13,7 +13,10 @@ export default function Ready(props: { state: state }) {
           state.map(
             (task) =>
               task.state == "Ready" && (
-                <div className="flex flex-row justify-between items-center border border-2 p-2 mb-4">
+                <div
+                  key={task.id}
+                  className="flex flex-row justify-between items-center border border-2 p-2 mb-4"
+                >
                   <h1>Hello</h1>
                 </div>
               )

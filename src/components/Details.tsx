@@ -37,7 +37,7 @@ export default function Details(props: { result: any }) {
               <div className="w-full flex flex-col gap-x-6">
                 {result &&
                   result.map((task: any) => (
-                    <div className="w-full flex">
+                    <div key={task.id} className="w-full flex">
                       <div className="w-36 text-center">{task.id}</div>|
                       <div className="w-36 text-center">{task.arrivalTime}</div>
                       |<div className="w-36 text-center">{task.burstTime}</div>|
