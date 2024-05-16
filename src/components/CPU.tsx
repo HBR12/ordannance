@@ -47,7 +47,10 @@ export default function CPU(props: { state: state; result: any }) {
         <div className="flex flex-row items-center">
           code source:{" "}
           <Button variant="ghost" asChild>
-            <Link href="https://www.youtube.com/watch?v=VOYWupNL9A0&t=48s">
+            <Link
+              target="_blank"
+              href="https://www.youtube.com/watch?v=VOYWupNL9A0&t=48s"
+            >
               <GithubIcon />
             </Link>
           </Button>
