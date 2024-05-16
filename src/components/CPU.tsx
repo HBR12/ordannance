@@ -49,7 +49,7 @@ export default function CPU(props: { state: state; result: any }) {
           <Button variant="ghost" asChild>
             <Link
               target="_blank"
-              href="https://www.youtube.com/watch?v=VOYWupNL9A0&t=48s"
+              href="https://www.youtube.com/watch?v=VOYWupNL9A0&t=41s"
             >
               <GithubIcon />
             </Link>
