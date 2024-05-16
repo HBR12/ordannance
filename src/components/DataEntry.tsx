@@ -130,7 +130,10 @@ export default function DataEntry(props: {
         <ScrollArea className="h-[320px] rounded-md border p-4 flex flex-col">
           {list &&
             list.map((proc) => (
-              <div className="flex flex-row items-center justify-between border-b border-b-2 p-2">
+              <div
+                key={proc.del}
+                className="flex flex-row items-center justify-between border-b border-b-2 p-2"
+              >
                 <h1>{proc.id}</h1>
                 <Button
                   variant="ghost"
