@@ -1,10 +1,11 @@
 "use client";
-import DataEntry from "@/components/DataEntry";
+import DataEntry, { process } from "@/components/DataEntry";
 import Queue from "@/components/Queue";
 import Ready from "@/components/Ready";
 import { response } from "@/lib/response";
 import { useEffect, useState } from "react";
 import CPU from "@/components/CPU";
+import { fetchData } from "@/lib/action";
 
 export type state =
   | {
@@ -23,8 +24,14 @@ export default function Home() {
   useEffect(() => {
     console.log(state);
   }, [state]);
-  const startAnimation = async () => {
-    const result = response;
+
+  const structData = (mode: string, data: process[]) => {
+    const struct = { Algorithm: mode, processes: data };
+    return struct;
+  };
+
+  const startAnimation = async (mode: string, data: process[]) => {
+    const result = await fetchData(structData(mode, data));
     setEndResult(null);
     setStartbtn(false);
     for (let i = 0; i < result.States.length; i++) {
