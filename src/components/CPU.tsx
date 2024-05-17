@@ -41,7 +41,7 @@ export default function CPU(props: { state: state; result: any }) {
             <h1 className="font-bold text-xl">Finish</h1>
             <p className="text-sm">safi rah salaw!</p>
           </div>
-          <ScrollArea className="h-[40vh] border p-4 flex flex-col">
+          <ScrollArea className="h-[34vh] border p-4 flex flex-col">
             <Finish state={state} />
           </ScrollArea>
           {result != null ? (
