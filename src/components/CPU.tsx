@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
 import Finish from "./Finish";
 import Details from "./Details";
-import { Github, GithubIcon } from "lucide-react";
+import { GithubIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function CPU(props: { state: state; result: any }) {
@@ -14,7 +14,10 @@ export default function CPU(props: { state: state; result: any }) {
     <div className="flex flex-col">
       <ScrollArea className="h-screen w-1/4 min-w-72 border-l border-x border-solid p-6 flex flex-col">
         <div className="flex flex-col gap-8 border-b border-solid pb-8">
-          <h1>CPU</h1>
+          <div className="flex flex-col gap-1">
+            <h1 className="font-bold text-xl">CPU</h1>
+            <p className="text-sm">processus kayt3alaj</p>
+          </div>
           <div className="h-[80px] border p-4 flex flex-col">
             {state &&
               state.map(
@@ -22,11 +25,11 @@ export default function CPU(props: { state: state; result: any }) {
                   task.state == "CPU" && (
                     <div
                       key={task.id}
-                      className="flex flex-row justify-between items-center border border-2 p-2 mb-4"
+                      className="flex flex-row justify-between items-center border border-2 border-dashed border-teal-500 p-2 mb-4 rounded-xl bg-teal-300"
                     >
                       <h1 className="text-lg">{task.id}</h1>
-                      <p className="italic text-slate-500 text-sm">
-                        BR:{task.burstTime == -1 ? 0 : task.burstTime}
+                      <p className="italic text-slate-500 text-xs">
+                        Burst Time:{task.burstTime == -1 ? 0 : task.burstTime}
                       </p>
                     </div>
                   )
@@ -34,8 +37,11 @@ export default function CPU(props: { state: state; result: any }) {
           </div>
         </div>
         <div className="border-b border-solid py-6 gap-4 flex flex-col">
-          <h1>Finish</h1>
-          <ScrollArea className="h-[48vh] border p-4 flex flex-col">
+          <div className="flex flex-col gap-1">
+            <h1 className="font-bold text-xl">Finish</h1>
+            <p className="text-sm">safi rah salaw!</p>
+          </div>
+          <ScrollArea className="h-[40vh] border p-4 flex flex-col">
             <Finish state={state} />
           </ScrollArea>
           {result != null ? (

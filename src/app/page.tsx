@@ -36,6 +36,7 @@ export default function Home() {
     setStartbtn(false);
     for (let i = 0; i < result.States.length; i++) {
       setState(result.States[i]);
+      console.log(result.States[i]);
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
     setEndResult(result.result);

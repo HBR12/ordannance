@@ -11,11 +11,11 @@ export default function Finish(props: { state: state }) {
             task.state == "Finished" && (
               <div
                 key={task.id}
-                className="flex flex-row justify-between items-center border border-2 p-2 mb-4"
+                className="flex flex-row justify-between items-center border border-2 border-dashed border-green-500 p-2 mb-4 rounded-xl bg-green-300"
               >
                 <h1 className="text-lg">{task.id}</h1>
-                <p className="italic text-slate-500 text-sm">
-                  BR:{task.burstTime == -1 ? 0 : task.burstTime}
+                <p className="italic text-slate-500 text-xs">
+                  Burst Time:{task.burstTime == -1 ? 0 : task.burstTime}
                 </p>
               </div>
             )

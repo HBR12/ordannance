@@ -10,6 +10,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { ScrollArea } from "./ui/scroll-area";
 
 export default function Details(props: { result: any }) {
   const result = props.result;
@@ -25,7 +26,7 @@ export default function Details(props: { result: any }) {
         <DrawerHeader>
           <DrawerTitle>Result of the implementation</DrawerTitle>
           <DrawerDescription>hadi l kholasa l dakxi li w9a3</DrawerDescription>
-          <div className="h-[400px] bg-black rounded-md p-4 text-white flex flex-col justify-between">
+          <div className="h-[400px] bg-black rounded-md p-4 text-white flex flex-col justify-between overflow-x-auto">
             <div className="w-full flex flex-col">
               <div className="w-full flex">
                 <div className="w-36 text-center">Process ID</div>|
@@ -36,18 +37,29 @@ export default function Details(props: { result: any }) {
               </div>
               <div className="w-full flex flex-col gap-x-6">
                 {result &&
-                  result.map((task: any) => (
-                    <div key={task.id} className="w-full flex">
-                      <div className="w-36 text-center">{task.id}</div>|
-                      <div className="w-36 text-center">{task.arrivalTime}</div>
-                      |<div className="w-36 text-center">{task.burstTime}</div>|
-                      <div className="w-36 text-center">{task.waitingTime}</div>
-                      |
-                      <div className="w-36 text-center">
-                        {task.turnAroundTime}
-                      </div>
-                    </div>
-                  ))}
+                  result.map(
+                    (task: any) =>
+                      !task.AverageWaitingTime && (
+                        <div key={task.id} className="w-full flex">
+                          <div className="w-36 text-center">{task.id}</div>|
+                          <div className="w-36 text-center">
+                            {task.arrivalTime}
+                          </div>
+                          |
+                          <div className="w-36 text-center">
+                            {task.burstTime}
+                          </div>
+                          |
+                          <div className="w-36 text-center">
+                            {task.waitingTime}
+                          </div>
+                          |
+                          <div className="w-36 text-center">
+                            {task.turnAroundTime}
+                          </div>
+                        </div>
+                      )
+                  )}
               </div>
             </div>
             <div className="w-full flex flex-row justify-end gap-x-8">

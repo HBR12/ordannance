@@ -28,12 +28,12 @@ export default function DataEntry(props: {
   const [btn, setBtn] = useState(1);
 
   const [id, setId] = useState(1);
-  const [name, setName] = useState("");
-  const [arrival, setArrival] = useState("");
-  const [burst, setBurst] = useState("");
-  const [priority, setPriority] = useState("");
+  const [arrival, setArrival] = useState(0);
+  const [burst, setBurst] = useState(0);
+  const [priority, setPriority] = useState(0);
   const [algo, setAlgo] = useState("First Come First Served");
   const [list, setList] = useState<process[]>([]);
+  const [errorMsg, setErrorMsg] = useState(false);
   useEffect(() => {
     console.log(list);
   }, [list]);
@@ -43,19 +43,28 @@ export default function DataEntry(props: {
   }, [props.startState]);
 
   const addNewProc = () => {
-    const obj: process = {
-      del: id,
-      id: name,
-      arrivalTime: parseInt(arrival),
-      burstTime: parseInt(burst),
-      priority: parseInt(priority),
-    };
-    setList((prevList) => {
-      return [...prevList, obj];
-    });
-    setId((prevId) => {
-      return prevId + 1;
-    });
+    if (
+      !Number.isNaN(arrival) &&
+      !Number.isNaN(burst) &&
+      !Number.isNaN(priority)
+    ) {
+      setErrorMsg(false);
+      const obj: process = {
+        del: id,
+        id: "proc" + id,
+        arrivalTime: arrival,
+        burstTime: burst,
+        priority: priority,
+      };
+      setList((prevList) => {
+        return [...prevList, obj];
+      });
+      setId((prevId) => {
+        return prevId + 1;
+      });
+    } else {
+      setErrorMsg(true);
+    }
   };
 
   const removeProc = (id: number) => {
@@ -65,7 +74,7 @@ export default function DataEntry(props: {
   };
 
   return (
-    <div className="h-screen w-1/4 min-w-72 border border-x border-solid p-6 flex flex-col">
+    <ScrollArea className="h-screen w-1/4 min-w-72 border border-x border-solid p-6 flex flex-col">
       <div className="flex flex-col gap-2 mb-4">
         <Select
           defaultValue="First Come First Served"
@@ -94,40 +103,52 @@ export default function DataEntry(props: {
             </SelectItem>
           </SelectContent>
         </Select>
-        <Input
-          placeholder="type process name"
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Input
-          placeholder="arrival time"
-          type="number"
-          min="0"
-          max="10"
-          onChange={(e) => setArrival(e.target.value)}
-        />
-        <Input
-          placeholder="burst time"
-          type="number"
-          min="0"
-          max="10"
-          onChange={(e) => setBurst(e.target.value)}
-        />
-        <Input
-          placeholder="priority"
-          type="number"
-          min="0"
-          max="10"
-          onChange={(e) => setPriority(e.target.value)}
-        />
+        <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-row-2">
+            <label className="text-sm">Arrival Time</label>
+            <Input
+              placeholder="max=10"
+              type="number"
+              min="0"
+              max="10"
+              value={arrival}
+              onChange={(e) => setArrival(parseInt(e.target.value))}
+            />
+          </div>
+          <div className="grid grid-row-2">
+            <label className="text-sm">Burst Time</label>
+            <Input
+              placeholder="max=10"
+              type="number"
+              min="0"
+              max="10"
+              value={burst}
+              onChange={(e) => setBurst(parseInt(e.target.value))}
+            />
+          </div>
+          <div className="grid grid-row-2">
+            <label className="text-sm">Priority</label>
+            <Input
+              placeholder="max=10"
+              type="number"
+              min="0"
+              max="10"
+              value={priority}
+              onChange={(e) => setPriority(parseInt(e.target.value))}
+            />
+          </div>
+        </div>
         <Button className="w-full" onClick={addNewProc}>
-          Add
+          Add Process
           <Plus />
         </Button>
+        {errorMsg && (
+          <p className="text-red-600 italic">matkhlix dakxi li lfo9 khawi</p>
+        )}
       </div>
       <div className="flex flex-col gap-4">
         <h1>Available:</h1>
-        <ScrollArea className="h-[320px] rounded-md border p-4 flex flex-col">
+        <ScrollArea className="h-[46vh] rounded-md border p-4 flex flex-col">
           {list &&
             list.map((proc) => (
               <div
@@ -151,6 +172,7 @@ export default function DataEntry(props: {
             className="w-full"
             onClick={() => {
               props.callback(algo, list);
+              setList([]);
             }}
           >
             START
@@ -161,6 +183,6 @@ export default function DataEntry(props: {
           </Button>
         )}
       </div>
-    </div>
+    </ScrollArea>
   );
 }
