@@ -14,9 +14,7 @@ export default function Finish(props: { state: state }) {
                 className="flex flex-row justify-between items-center border border-2 border-dashed border-green-500 p-2 mb-4 rounded-xl bg-green-300"
               >
                 <h1 className="text-lg">{task.id}</h1>
-                <p className="italic text-slate-500 text-xs">
-                  Burst Time:{task.burstTime == -1 ? 0 : task.burstTime}
-                </p>
+                <p className="italic text-slate-500 text-xs">Finished</p>
               </div>
             )
         )}
