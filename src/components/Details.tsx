@@ -30,6 +30,12 @@ export default function Details(props: { result: any }) {
             <div className="w-full flex flex-col">
               <div className="w-full flex">
                 <div className="w-36 text-center">Process ID</div>|
+                {result[0].priority ? (
+                  <>
+                    <div className="w-36 text-center">Priority</div>
+                    <div>|</div>
+                  </>
+                ) : null}
                 <div className="w-36 text-center">Arrival Time</div>|
                 <div className="w-36 text-center">Burst Time</div>|
                 <div className="w-36 text-center">Waiting Time</div>|
@@ -42,6 +48,14 @@ export default function Details(props: { result: any }) {
                       !task.AverageWaitingTime && (
                         <div key={task.id} className="w-full flex">
                           <div className="w-36 text-center">{task.id}</div>|
+                          {task.priority ? (
+                            <>
+                              <div className="w-36 text-center">
+                                {task.priority}
+                              </div>
+                              <div>|</div>
+                            </>
+                          ) : null}
                           <div className="w-36 text-center">
                             {task.arrivalTime}
                           </div>

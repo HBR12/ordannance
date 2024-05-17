@@ -13,6 +13,7 @@ export type state =
       arrivalTime: number;
       burstTime: number;
       state: string;
+      priority: number;
       order: number;
     }[]
   | undefined;

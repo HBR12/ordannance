@@ -152,7 +152,7 @@ export default function DataEntry(props: {
       </div>
       <div className="flex flex-col gap-4">
         <h1>Available:</h1>
-        <ScrollArea className="h-[46vh] rounded-md border p-4 flex flex-col">
+        <ScrollArea className="h-[30vh] grow rounded-md border p-4 flex flex-col">
           {list &&
             list.map((proc) => (
               <div
@@ -177,6 +177,7 @@ export default function DataEntry(props: {
             onClick={() => {
               props.callback(algo, list);
               setList([]);
+              setId(1);
             }}
           >
             START
