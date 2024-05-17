@@ -76,34 +76,38 @@ export default function DataEntry(props: {
   return (
     <ScrollArea className="h-screen w-1/4 min-w-72 border border-x border-solid p-6 flex flex-col">
       <div className="flex flex-col gap-2 mb-4">
-        <Select
-          defaultValue="First Come First Served"
-          onValueChange={(e) => {
-            setAlgo(e);
-          }}
-        >
-          <SelectTrigger className="">
-            <SelectValue
-              placeholder="First Come First Served"
-              defaultChecked={true}
-            />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="First Come First Served">
-              First In, First Out {"("}FIFO{")"}
-            </SelectItem>
-            <SelectItem value="Shortest Job First">
-              Shortest Job First {"("}SJF{")"}
-            </SelectItem>
-            <SelectItem value="Shortest Remaining Time First">
-              Shortest Remaining Time First {"("}SRTF{")"}
-            </SelectItem>
-            <SelectItem value="Highest Priority First">
-              Highest Priority First {"("}HPF{")"}
-            </SelectItem>
-          </SelectContent>
-        </Select>
         <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-row-2 col-span-2">
+            <label className="text-sm">Algorithms</label>
+            <Select
+              defaultValue="First Come First Served"
+              onValueChange={(e) => {
+                setAlgo(e);
+              }}
+            >
+              <SelectTrigger className="">
+                <SelectValue
+                  placeholder="First Come First Served"
+                  defaultChecked={true}
+                />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="First Come First Served">
+                  First In, First Out {"("}FIFO{")"}
+                </SelectItem>
+                <SelectItem value="Shortest Job First">
+                  Shortest Job First {"("}SJF{")"}
+                </SelectItem>
+                <SelectItem value="Shortest Remaining Time First">
+                  Shortest Remaining Time First {"("}SRTF{")"}
+                </SelectItem>
+                <SelectItem value="Highest Priority First">
+                  Highest Priority First {"("}HPF{")"}
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           <div className="grid grid-row-2">
             <label className="text-sm">Arrival Time</label>
             <Input
