@@ -19,10 +19,11 @@ export type process = {
   arrivalTime: number;
   burstTime: number;
   priority: number;
+  quantum: number;
 };
 
 export default function DataEntry(props: {
-  callback: (mode: string, data: process[]) => void;
+  callback: (mode: string, data: process[], quantum: number) => void;
   startState: any;
 }) {
   const [btn, setBtn] = useState(1);
@@ -31,12 +32,10 @@ export default function DataEntry(props: {
   const [arrival, setArrival] = useState(0);
   const [burst, setBurst] = useState(0);
   const [priority, setPriority] = useState(0);
+  const [quantum, setQuantum] = useState(0);
   const [algo, setAlgo] = useState("First Come First Served");
   const [list, setList] = useState<process[]>([]);
   const [errorMsg, setErrorMsg] = useState(false);
-  useEffect(() => {
-    console.log(list);
-  }, [list]);
 
   useEffect(() => {
     props.startState ? setBtn(1) : setBtn(0);
@@ -55,6 +54,7 @@ export default function DataEntry(props: {
         arrivalTime: arrival,
         burstTime: burst,
         priority: priority,
+        quantum: quantum,
       };
       setList((prevList) => {
         return [...prevList, obj];
@@ -108,9 +108,26 @@ export default function DataEntry(props: {
                 <SelectItem value="Highest Priority First">
                   Highest Priority First {"("}HPF{")"}
                 </SelectItem>
+                <SelectItem value="Round Robin">
+                  Round Robin {"("}RR{")"}
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
+
+          {algo == "Round Robin" && (
+            <div className="grid grid-row-2 col-span-2">
+              <label className="text-sm">Quantum</label>
+              <Input
+                placeholder="max=10"
+                type="number"
+                min="0"
+                max="10"
+                value={quantum}
+                onChange={(e) => setQuantum(parseInt(e.target.value))}
+              />
+            </div>
+          )}
 
           <div className="grid grid-row-2">
             <label className="text-sm">Arrival Time</label>
@@ -135,7 +152,11 @@ export default function DataEntry(props: {
             />
           </div>
           <div className="grid grid-row-2">
-            <label className="text-sm">Priority</label>
+            <label className="text-sm">
+              Priority{"  "}
+              <span className="italic text-xs">min is the fastest</span>
+            </label>
+
             <Input
               placeholder="max=10"
               type="number"
@@ -143,6 +164,7 @@ export default function DataEntry(props: {
               max="10"
               value={priority}
               onChange={(e) => setPriority(parseInt(e.target.value))}
+              disabled={algo != "Highest Priority First"}
             />
           </div>
         </div>
@@ -179,7 +201,7 @@ export default function DataEntry(props: {
           <Button
             className="w-full"
             onClick={() => {
-              props.callback(algo, list);
+              props.callback(algo, list, quantum);
               setList([]);
               setId(1);
             }}

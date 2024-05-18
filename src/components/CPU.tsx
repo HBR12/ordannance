@@ -56,17 +56,12 @@ export default function CPU(props: {
             <Button disabled>See details</Button>
           )}
         </div>
-        <div className="flex flex-row items-center">
-          code source:{" "}
-          <Button variant="ghost" asChild>
-            <Link
-              target="_blank"
-              href="https://www.youtube.com/watch?v=B8RwhivK0fk&t=586s"
-            >
-              <GithubIcon />
-            </Link>
-          </Button>
-        </div>
+
+        <Button className="w-full" asChild>
+          <Link target="_blank" href="https://github.com/HBR12/ordannance">
+            Code Source <GithubIcon className="ml-2" />
+          </Link>
+        </Button>
       </ScrollArea>
     </div>
   );

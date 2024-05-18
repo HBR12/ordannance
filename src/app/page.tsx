@@ -27,16 +27,20 @@ export default function Home() {
     console.log(state);
   }, [state]);
 
-  const structData = (mode: string, data: process[]) => {
-    const struct = { Algorithm: mode, processes: data };
+  const structData = (mode: string, data: process[], quantum: number) => {
+    const struct = { Algorithm: mode, processes: data, quantum };
     return struct;
   };
 
   const states = useRef<any>();
   const currState = useRef<number>(0);
 
-  const startAnimation = async (mode: string, data: process[]) => {
-    const result = await fetchData(structData(mode, data));
+  const startAnimation = async (
+    mode: string,
+    data: process[],
+    quantum: number
+  ) => {
+    const result = await fetchData(structData(mode, data, quantum));
     states.current = result;
     currState.current = states.current.States.length - 1;
 
