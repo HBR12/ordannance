@@ -75,6 +75,10 @@ export default function DataEntry(props: {
 
   return (
     <ScrollArea className="h-screen w-1/4 min-w-72 border border-x border-solid p-6 flex flex-col">
+      <div className="flex flex-col gap-1 mb-6">
+        <h1 className="font-bold text-xl">Initialisation</h1>
+        <p className="text-sm">dkhal data dyalk alm3alam</p>
+      </div>
       <div className="flex flex-col gap-2 mb-4">
         <div className="grid grid-cols-2 gap-2">
           <div className="grid grid-row-2 col-span-2">

@@ -13,37 +13,24 @@ export default function Controls(props: {
   callback: (forward: boolean) => void;
   result: any;
 }) {
-  return props.result != null ? (
-    <div className="fixed bottom-8 left-[47.5%]">
+  return (
+    <div className="w-full grid grid-cols-2">
       <Button
-        className="rounded-none rounded-l-full"
+        className="rounded-none rounded-l-md"
         onClick={() => {
           props.callback(false);
         }}
+        disabled={props.result == null}
       >
         <TrackPreviousIcon />
       </Button>
-      <Button className="rounded-none cursor-default hover:bg-primary">
-        <ComponentInstanceIcon />
-      </Button>
       <Button
-        className="rounded-none rounded-r-full"
+        className="rounded-none rounded-r-md"
         onClick={() => {
           props.callback(true);
         }}
+        disabled={props.result == null}
       >
-        <TrackNextIcon />
-      </Button>
-    </div>
-  ) : (
-    <div className="fixed bottom-8 left-[47.5%]">
-      <Button className="rounded-none rounded-l-full" disabled>
-        <TrackPreviousIcon />
-      </Button>
-      <Button className="rounded-none cursor-default hover:bg-primary" disabled>
-        <ComponentInstanceIcon />
-      </Button>
-      <Button className="rounded-none rounded-r-full" disabled>
         <TrackNextIcon />
       </Button>
     </div>

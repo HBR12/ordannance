@@ -6,8 +6,13 @@ import Finish from "./Finish";
 import Details from "./Details";
 import { GithubIcon } from "lucide-react";
 import Link from "next/link";
+import Controls from "./Controls";
 
-export default function CPU(props: { state: state; result: any }) {
+export default function CPU(props: {
+  state: state;
+  result: any;
+  callback: (forward: boolean) => void;
+}) {
   const state = props.state;
   const result = props.result;
   return (
@@ -41,9 +46,10 @@ export default function CPU(props: { state: state; result: any }) {
             <h1 className="font-bold text-xl">Finish</h1>
             <p className="text-sm">safi rah salaw!</p>
           </div>
-          <ScrollArea className="h-[34vh] border p-4 flex flex-col">
+          <ScrollArea className="h-[30vh] border p-4 flex flex-col">
             <Finish state={state} />
           </ScrollArea>
+          <Controls result={props.result} callback={props.callback} />
           {result != null ? (
             <Details result={result} />
           ) : (
@@ -55,7 +61,7 @@ export default function CPU(props: { state: state; result: any }) {
           <Button variant="ghost" asChild>
             <Link
               target="_blank"
-              href="https://www.youtube.com/watch?v=zdFUYSouAOI&t=734s"
+              href="https://www.youtube.com/watch?v=B8RwhivK0fk&t=586s"
             >
               <GithubIcon />
             </Link>

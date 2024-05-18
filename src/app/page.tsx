@@ -68,9 +68,8 @@ export default function Home() {
         <DataEntry callback={startAnimation} startState={startbtn} />
         <Queue state={state} />
         <Ready state={state} />
-        <CPU state={state} result={endResult} />
+        <CPU state={state} result={endResult} callback={changeState} />
       </div>
-      <Controls result={endResult} callback={changeState} />
     </>
   );
 }
